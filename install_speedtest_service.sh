@@ -1,4 +1,19 @@
-#!/bin/sh
+#!/bin/bash
+
+###############################################################################
+#  install speedtest services, e.g. downloading, uploading, report
+#  
+#
+#  usage:
+#      bash install_speedtest_service.sh
+#
+###############################################################################
+
+echo 'start at:' `date +'%Y-%m-%d %H:%M:%S'`
+
+# change work dir, celery not recognize the apisite conf in case
+WORK_DIR=$(pwd -P)
+cd ${WORK_DIR}
 
 # install openresty
 apt-get install libpcre3 libpcre3-dev openssl libssl-dev libreadline-dev perl make build-essential libncurses5-dev curl
@@ -9,6 +24,7 @@ cd openresty-1.13.6.1
 echo 'export PATH=/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$PATH' >> ~/.bashrc
 # source ~/.bashrc
 
+cd ${WORK_DIR}
 # copy nginx conf
 cp resources/nginx.conf /usr/local/openresty/nginx/conf
 # upload lua
@@ -31,5 +47,9 @@ mkdir -p /tmp/uploads/
 /usr/local/openresty/nginx/sbin/nginx
 
 # report server status
+# ToDo
 
 # report stats
+# ToDo
+
+echo 'finish at:' `date +'%Y-%m-%d %H:%M:%S'`
