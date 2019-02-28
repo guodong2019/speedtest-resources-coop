@@ -1,5 +1,4 @@
-package.path = '/usr/local/share/lua/5.3/?.lua;/usr/local/openresty/lualib/resty/?.lua;'
-package.cpath = '/usr/local/lib/lua/5.3/?.so;'
+package.path = '/usr/local/openresty/lualib/resty/?.lua;'
 local upload = require "upload"
 local chunk_size = 4096
 local form, err = upload:new(chunk_size)
@@ -18,7 +17,7 @@ function get_filename(res)
         return filename[2]
     end
 end
--- local osfilepath = "/dev/null"
+
 local osfilepath = "/tmp/uploads/"
 local i=0
 while true do
